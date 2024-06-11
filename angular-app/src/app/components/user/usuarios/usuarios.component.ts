@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 export class UsuariosComponent implements OnInit {
   usuarios: any[] = [];
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
@@ -23,5 +23,9 @@ export class UsuariosComponent implements OnInit {
         error => console.error('Error al obtener usuarios', error)
       );
     }
+  }
+
+  goHome(): void {
+    this.router.navigate(['/home']);
   }
 }
