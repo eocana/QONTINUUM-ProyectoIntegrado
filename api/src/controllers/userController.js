@@ -28,19 +28,19 @@ function generateToken(user) {
 
 // Login de usuario
 exports.login = async (req, res) => {
-    const { login, contraseña } = req.body;
+    const { login, contrasenya } = req.body;
     try {
         const pool = await poolPromise;
         const result = await pool.request()
             .input('login', sql.NVarChar, login)
-            .input('contraseña', sql.NVarChar, contraseña)
+            .input('contrasenya', sql.NVarChar, contrasenya)
             .query(`
                 SELECT 
                     dni, nombre, primerApellido, segundoApellido, login, idDepartamento 
                 FROM 
                     Tabla_Usuario 
                 WHERE 
-                    login = @login AND contraseña = @contraseña
+                    login = @login AND contrasenya = @contrasenya
             `);
 
         if (result.recordset.length > 0) {
@@ -66,7 +66,7 @@ exports.getAllUsers = async (req, res) => {
                 u.primerApellido,
                 u.segundoApellido,
                 u.login,
-                u.contraseña,
+                u.contrasenya,
                 u.fotografia,
                 d.nombreDepartamento AS departamento
             FROM 
@@ -97,7 +97,7 @@ exports.getUserByDni = async (req, res) => {
                     u.primerApellido,
                     u.segundoApellido,
                     u.login,
-                    u.contraseña,
+                    u.contrasenya,
                     u.fotografia,
                     d.nombreDepartamento AS departamento
                 FROM 
@@ -119,7 +119,7 @@ exports.getUserByDni = async (req, res) => {
 
 // Crear un nuevo usuario
 exports.createUser = async (req, res) => {
-    const { nombre, primerApellido, segundoApellido, dni, login, contraseña, fotografia, idDepartamento } = req.body;
+    const { nombre, primerApellido, segundoApellido, dni, login, contrasenya, fotografia, idDepartamento } = req.body;
     if (!isValidDNI(dni)) {
         return res.status(400).send({ message: 'DNI inválido' });
     }
@@ -143,12 +143,12 @@ exports.createUser = async (req, res) => {
             .input('segundoApellido', sql.NVarChar, segundoApellido)
             .input('dni', sql.NVarChar, dni)
             .input('login', sql.NVarChar, login)
-            .input('contraseña', sql.NVarChar, contraseña)
+            .input('contrasenya', sql.NVarChar, contrasenya)
             .input('fotografia', sql.VarBinary, fotografia)
             .input('idDepartamento', sql.Int, idDepartamento)
             .query(`
-                INSERT INTO Tabla_Usuario (nombre, primerApellido, segundoApellido, dni, login, contraseña, fotografia, idDepartamento)
-                VALUES (@nombre, @primerApellido, @segundoApellido, @dni, @login, @contraseña, @fotografia, @idDepartamento)
+                INSERT INTO Tabla_Usuario (nombre, primerApellido, segundoApellido, dni, login, contrasenya, fotografia, idDepartamento)
+                VALUES (@nombre, @primerApellido, @segundoApellido, @dni, @login, @contrasenya, NULL, @idDepartamento)
             `);
         res.status(201).send({ message: 'Usuario creado exitosamente' });
     } catch (err) {
@@ -156,9 +156,9 @@ exports.createUser = async (req, res) => {
     }
 };
 
-// Actualizar la contraseña del usuario
+// Actualizar la contrasenya del usuario
 exports.updatePassword = async (req, res) => {
-    const { dni, contraseña } = req.body;
+    const { dni, contrasenya } = req.body;
     if (!isValidDNI(dni)) {
         return res.status(400).send({ message: 'DNI inválido' });
     }
@@ -166,15 +166,15 @@ exports.updatePassword = async (req, res) => {
         const pool = await poolPromise;
         await pool.request()
             .input('dni', sql.NVarChar, dni)
-            .input('contraseña', sql.NVarChar, contraseña)
+            .input('contrasenya', sql.NVarChar, contrasenya)
             .query(`
                 UPDATE Tabla_Usuario
-                SET contraseña = @contraseña
+                SET contrasenya = @contrasenya
                 WHERE dni = @dni
             `);
         res.send({ message: 'Contraseña actualizada exitosamente' });
     } catch (err) {
-        res.status(500).send({ message: 'Error al actualizar contraseña', error: err });
+        res.status(500).send({ message: 'Error al actualizar contrasenya', error: err });
     }
 };
 

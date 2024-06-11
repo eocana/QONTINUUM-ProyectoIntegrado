@@ -26,7 +26,7 @@ export class BorrarUsuarioComponent {
   onDelete(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      this.usuarioService.deleteUser(this.dni, this.userDni,token).subscribe(
+      this.usuarioService.deleteUser(this.dni, this.userDni, token).subscribe(
         response => {
           this.message = 'Usuario borrado exitosamente';
           this.cdr.markForCheck();

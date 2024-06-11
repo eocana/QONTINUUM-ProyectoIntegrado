@@ -13,12 +13,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
   login: string = '';
-  password: string = '';
+  contrasenya: string = '';
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   onLogin(): void {
-    this.usuarioService.login(this.login, this.password).subscribe(
+    this.usuarioService.login(this.login, this.contrasenya).subscribe(
       response => {
         localStorage.setItem('token', response.token);
         this.router.navigate(['/home']); // Redirigir a HomeComponent

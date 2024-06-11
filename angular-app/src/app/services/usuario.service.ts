@@ -10,45 +10,32 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  login(login: string, contraseña: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { login, contraseña });
+  login(login: string, contrasenya: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, { login, contrasenya });
   }
 
-  getUsers(token: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.get(`${this.apiUrl}/users`, { headers });
+  getUsers(token: string): Observable<any[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/users`, { headers });
   }
 
   getUserByDni(dni: string, token: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.get(`${this.apiUrl}/users/${dni}`, { headers });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiUrl}/users/${dni}`, { headers });
   }
 
   createUser(user: any, token: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.post(`${this.apiUrl}/users`, user, { headers });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.apiUrl}/users`, user, { headers });
   }
 
   updateUserPassword(dni: string, newPassword: string, token: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.put(`${this.apiUrl}/users/password`, { dni, contraseña: newPassword }, { headers });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.apiUrl}/users/password`, { dni, newPassword }, { headers });
   }
 
-  deleteUser(dni: string, userDni: string, token: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.delete(`${this.apiUrl}/users`, {
-      headers,
-      body: { dni, userDni }
-    });
+  deleteUser(dni: string, userDni: string,token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(`${this.apiUrl}/users`, { headers, body: { dni } });
   }
 }

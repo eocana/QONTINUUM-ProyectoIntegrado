@@ -40,10 +40,10 @@ export class UsuarioCrearComponent {
       this.usuarioService.createUser(user, token).subscribe(
         response => {
           console.log('Usuario creado exitosamente');
-          this.router.navigate(['/usuarios']);
+          this.router.navigate(['/home']);
         },
         error => {
-          console.error('Error al crear usuario', error);
+          console.error('Error (Component) al crear usuario', error);
         }
       );
     }

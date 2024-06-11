@@ -1,11 +1,11 @@
 class User {
-    constructor(nombre, primerApellido, segundoApellido, dni, login, password, fotografia, departamento) {
+    constructor(nombre, primerApellido, segundoApellido, dni, login, contrasenya, fotografia, departamento) {
         this.nombre = nombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.dni = dni;
         this.login = login;
-        this.password = password;
+        this.contrasenya = contrasenya;
         this.fotografia = fotografia;
         this.departamento = departamento;
     }

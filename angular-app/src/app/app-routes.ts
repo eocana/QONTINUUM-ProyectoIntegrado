@@ -6,6 +6,7 @@ import { UsuarioCrearComponent } from './components/user/usuario-crear/usuario-c
 import { HomeComponent } from './components/home/home.component';
 import { BorrarUsuarioComponent } from './components/user/borrar-usuario/borrar-usuario.component';
 import { ActualizarContraseñaComponent } from './components/user/actualizar-password/actualizar-password.component';
+import { PerfilUsuarioComponent } from './components/user/perfil-usuario/perfil-usuario.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'crear-usuario', component: UsuarioCrearComponent, canActivate: [AuthGuard] },
   { path: 'borrar-usuario', component: BorrarUsuarioComponent, canActivate: [AuthGuard] },
   { path: 'actualizar-contraseña', component: ActualizarContraseñaComponent, canActivate: [AuthGuard] },
+  { path: 'perfil', component: PerfilUsuarioComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
