@@ -1,7 +1,9 @@
 const { poolPromise, sql } = require('../config/db');
 const jwt = require('jsonwebtoken');
 
+
 function isValidDNI(dni) {
+    /*
     const dniRegex = /^[0-9]{8}[A-Z]$/;
     if (!dniRegex.test(dni)) {
         return false;
@@ -11,6 +13,13 @@ function isValidDNI(dni) {
     const validLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
     const calculatedLetter = validLetters[number % 23];
     return letter === calculatedLetter;
+    */ 
+    return dni.length === 9
+}
+function lengthDNI(dni){
+    if (dni.length !== 9) { // Asumiendo que la longitud correcta del DNI es 9
+        return res.status(400).json({ message: 'La longitud del DNI es incorrecta' });
+    }
 }
 
 // Función para generar un token JWT
@@ -144,11 +153,11 @@ exports.createUser = async (req, res) => {
             .input('dni', sql.NVarChar, dni)
             .input('login', sql.NVarChar, login)
             .input('contrasenya', sql.NVarChar, contrasenya)
-            .input('fotografia', sql.VarBinary, fotografia)
+            .input('fotografia', sql.NVarChar, fotografia)
             .input('idDepartamento', sql.Int, idDepartamento)
             .query(`
                 INSERT INTO Tabla_Usuario (nombre, primerApellido, segundoApellido, dni, login, contrasenya, fotografia, idDepartamento)
-                VALUES (@nombre, @primerApellido, @segundoApellido, @dni, @login, @contrasenya, NULL, @idDepartamento)
+                VALUES (@nombre, @primerApellido, @segundoApellido, @dni, @login, @contrasenya, @fotografia, @idDepartamento)
             `);
         res.status(201).send({ message: 'Usuario creado exitosamente' });
     } catch (err) {

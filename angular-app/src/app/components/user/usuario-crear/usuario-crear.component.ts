@@ -17,7 +17,7 @@ export class UsuarioCrearComponent {
   segundoApellido: string = '';
   dni: string = '';
   login: string = '';
-  password: string = '';
+  contrasenya: string = '';
   fotografia: string = '';
   idDepartamento: number = 0;
 
@@ -31,7 +31,7 @@ export class UsuarioCrearComponent {
       segundoApellido: this.segundoApellido,
       dni: this.dni,
       login: this.login,
-      password: this.password,
+      contrasenya: this.contrasenya,
       fotografia: this.fotografia,
       idDepartamento: this.idDepartamento
     };
