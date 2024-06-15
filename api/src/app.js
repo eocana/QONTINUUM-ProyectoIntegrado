@@ -1,26 +1,45 @@
 const express = require('express');
-const cors = require('cors'); 
-const app = express();
-const port = 3000;
+const http = require('http');
+const socketIo = require('socket.io');
+const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
-const bodyParser = require('body-parser');
+const { userSocket } = require('./sockets/userSocket');
+
+const app = express();
+const server = http.createServer(app);
 
 // Configurar CORS
 app.use(cors({
-  origin: 'http://localhost:4200', // Permitir solicitudes desde esta URL
+  origin: '*', // Permitir solicitudes desde cualquier URL
   optionsSuccessStatus: 200
 }));
 
-// Middleware
-app.use(bodyParser.json());
-
-// Rutas
-app.use('/api', userRoutes);
+// Configurar middleware para parsear JSON
+app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('API funcionando correctamente');
+  res.send('Servidor funcionando');
+});
+// Rutas API
+app.use('/api', userRoutes);
+
+// Configurar Sockets
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+  }
 });
 
-app.listen(port, () => {
-    console.log(`Servidor ejecutándose en http://localhost:${port}`);
+io.on('connection', (socket) => {
+  console.log('Nuevo cliente conectado');
+  userSocket(socket);
+
+  socket.on('disconnect', () => {
+    console.log('Cliente desconectado');
+  });
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
