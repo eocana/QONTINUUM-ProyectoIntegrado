@@ -63,7 +63,6 @@ const config = {
 - **DELETE /api/users**: Endpoint para borrar un usuario.
 - **GET /api/users**: Endpoint para obtener todos los usuarios.
 - **POST /api/users**: Endpoint para crear un usuario.
-- **GET /api/users/:dni**: Endpoint para obtener el perfil de un usuario.
 
 ### Sockets
 
