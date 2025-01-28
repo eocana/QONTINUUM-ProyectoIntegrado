@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dniLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DNI: "
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/dniTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/dniLabel"
+        android:layout_alignBaseline="@id/dniLabel"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/nombreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre: "
+        android:textSize="16sp"
+        android:layout_below="@id/dniLabel"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/nombreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/nombreLabel"
+        android:layout_alignBaseline="@id/nombreLabel"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/primerApellidoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Primer Apellido: "
+        android:textSize="16sp"
+        android:layout_below="@id/nombreLabel"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/primerApellidoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/primerApellidoLabel"
+        android:layout_alignBaseline="@id/primerApellidoLabel"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/segundoApellidoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Segundo Apellido: "
+        android:textSize="16sp"
+        android:layout_below="@id/primerApellidoLabel"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/segundoApellidoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/segundoApellidoLabel"
+        android:layout_alignBaseline="@id/segundoApellidoLabel"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/loginLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login: "
+        android:textSize="16sp"
+        android:layout_below="@id/segundoApellidoLabel"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/loginTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/loginLabel"
+        android:layout_alignBaseline="@id/loginLabel"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/departamentoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Departamento: "
+        android:textSize="16sp"
+        android:layout_below="@id/loginLabel"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/departamentoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/departamentoLabel"
+        android:layout_alignBaseline="@id/departamentoLabel"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<div>
+    <h2>Borrar Usuario</h2>
+    <form (ngSubmit)="onDelete()">
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" [(ngModel)]="dni" name="dni" required>
+        <button type="submit">Borrar Usuario</button>
+    </form>
+    <p *ngIf="message">{{ message }}</p>
+    <button (click)="goHome()">Volver a Home</button>
+</div>

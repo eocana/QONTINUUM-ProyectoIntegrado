@@ -1,0 +1,28 @@
+<div>
+    <h2>Lista de Usuarios</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>DNI</th>
+                <th>Login</th>
+                <th>Fotografía</th>
+                <th>Nombre del Departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.primerApellido }}</td>
+                <td>{{ usuario.segundoApellido }}</td>
+                <td>{{ usuario.dni }}</td>
+                <td>{{ usuario.login }}</td>
+                <td><img [src]="usuario.fotografia" alt="Fotografía" width="50"></td>
+                <td>{{ usuario.nombreDepartamento }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="goHome()">Volver a Home</button>
+</div>
